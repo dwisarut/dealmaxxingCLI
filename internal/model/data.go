@@ -1,19 +1,19 @@
 package data
 
 type GameData struct {
-	internalName       string
-	title              string
-	dealID             string
-	isOnSale           string
-	saving             string
-	salePrice          string
-	metacriticScore    string
-	steamRatingPercent string
+	InternalName       string `json:"internalName"`
+	Title              string `json:"title"`
+	DealID             string `json:"dealID"`
+	IsOnSale           string `json:"isOnSale"`
+	Saving             string `json:"saving"`
+	SalePrice          string `json:"salePrice"`
+	MetacriticScore    string `json:"metacriticScore"`
+	SteamRatingPercent string `json:"steamRatingPercent"`
 }
 
 type InputData struct {
-	suffix  string
-	command string
-	param   string
-	name    string
+	Suffix  string `json:"suffix"`
+	Command string `json:"command"`
+	Param   string `json:"param"`
+	Name    string `json:"name"`
 }
