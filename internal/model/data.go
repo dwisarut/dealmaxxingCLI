@@ -11,10 +11,7 @@ type GameData struct {
 	SteamRatingPercent string `json:"steamRatingPercent"`
 }
 
-type InputDataCLI struct {
-	Search   string
-	Query    string
-	Top      int
-	Command  bool
-	MaxPrice int
+type SearchParseType struct {
+	Command string
+	Arg     string
 }
