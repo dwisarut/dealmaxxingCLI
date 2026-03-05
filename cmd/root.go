@@ -1,49 +1,54 @@
 package cmd
 
 import (
-	"flag"
+	"bufio"
 	"fmt"
-
-	"github.com/dwisarut/dealmaxxingCLI/internal/model"
+	"os"
+	"strings"
 )
 
 func InitCLI() {
-	var inputData model.InputDataCLI
-
-	flag.StringVar(&inputData.Search, "search", "", "Search game title")
-	flag.StringVar(&inputData.Query, "query", "", "Query deal")
-	flag.BoolVar(&inputData.Command, "cmd", false, "Show commands")
-	flag.IntVar(&inputData.Top, "top", 10, "Top N deals currently")
-	flag.IntVar(&inputData.MaxPrice, "maxprice", 15, "Maximum price filter")
+	reader := bufio.NewReader(os.Stdin)
 
 	initMessage()
 
-	flag.Parse()
+	for {
+		fmt.Print("> ")
 
-	switch {
-	case inputData.Command:
-		showCommand()
+		input, _ := reader.ReadString('\n')
+		input = strings.TrimSpace(input)
 
-	// case inputData.Query != "":
-	// 	handleQuery(inputData.Query)
+		switch {
+		case strings.HasPrefix(input, "cmd"):
+			showCommand()
 
-	// case inputData.Query != "":
-	// 	handleSearch(inputData.Search)
+		case strings.HasPrefix(input, "query"):
+			// QueryParser(input)
+			fmt.Println("Querying...")
 
-	default:
-		fmt.Println("No command provided")
+		case strings.HasPrefix(input, "search"):
+			SearchParser(input)
+			fmt.Println("Searching...")
+
+		case input == "exit":
+			fmt.Println("Exiting DealmaxxingCLI...")
+			return
+
+		default:
+			fmt.Println("Unknown command")
+		}
 	}
 
 }
 
 func showCommand() {
 	fmt.Println("Here's an available commands:")
-	fmt.Println("-search					Searching for a specific game")
-	fmt.Println("-query					Query lists of game with specific parameter")
+	fmt.Printf("%-10s %s\n", "search", "Searching for a specific game")
+	fmt.Printf("%-10s %s\n", "query", "Query lists of game with specific parameter")
 }
 
 func initMessage() {
 	fmt.Println("DealmaxxingCLI")
-	fmt.Println("Insert your command here.")
-	fmt.Println("Type -cmd to find an available commands!")
+	fmt.Println("Your trusty tools for finding cheap game!")
+	fmt.Println("Type cmd to find an available commands.")
 }
