@@ -23,7 +23,7 @@ func InitCLI() {
 			showCommand()
 
 		case strings.HasPrefix(input, "query"):
-			// QueryParser(input)
+			QueryParser(input)
 			fmt.Println("Querying...")
 
 		case strings.HasPrefix(input, "search"):
