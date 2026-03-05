@@ -1,4 +1,4 @@
-# DealMaxxingCLI - CLI tool for finding discounted game
+# DealMaxxingCLI - Finding Discounted Game
 
 An interactive CLI (Command-Line Interface) tool that handling APIs logic such as searching, and querying. The final output is the links of all available deals from multiple stores such as Steam, Gamersgate, Fanatical, etc.
 
