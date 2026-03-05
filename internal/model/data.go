@@ -15,3 +15,10 @@ type SearchParseType struct {
 	Command string
 	Arg     string
 }
+
+type QueryParseType struct {
+	Command     string
+	OrderParam  string
+	IntParam    string
+	CriticParam string
+}
