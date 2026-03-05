@@ -3,32 +3,37 @@ package cmd
 import (
 	"flag"
 	"fmt"
+
+	"github.com/dwisarut/dealmaxxingCLI/internal/model"
 )
 
 func InitCLI() {
-	var search string
-	var query string
-	var command bool
+	var inputData model.InputDataCLI
 
-	flag.StringVar(&search, "search", "", "Search game title")
-	flag.StringVar(&query, "query", "", "Query deal")
-	flag.BoolVar(&command, "cmd", false, "Show commands")
+	flag.StringVar(&inputData.Search, "search", "", "Search game title")
+	flag.StringVar(&inputData.Query, "query", "", "Query deal")
+	flag.BoolVar(&inputData.Command, "cmd", false, "Show commands")
+	flag.IntVar(&inputData.Top, "top", 10, "Top N deals currently")
+	flag.IntVar(&inputData.MaxPrice, "maxprice", 15, "Maximum price filter")
 
 	initMessage()
 
 	flag.Parse()
 
-	if command {
+	switch {
+	case inputData.Command:
 		showCommand()
+
+	// case inputData.Query != "":
+	// 	handleQuery(inputData.Query)
+
+	// case inputData.Query != "":
+	// 	handleSearch(inputData.Search)
+
+	default:
+		fmt.Println("No command provided")
 	}
 
-	// if query != "" {
-	// 	handleQuery(query)
-	// }
-
-	// if search != "" {
-	// 	handleSearch(search)
-	// }
 }
 
 func showCommand() {
