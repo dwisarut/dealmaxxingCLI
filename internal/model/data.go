@@ -17,8 +17,9 @@ type SearchParseType struct {
 }
 
 type QueryParseType struct {
-	Command     string
-	OrderParam  string
-	IntParam    string
-	CriticParam string
+	Command        string
+	SortBy         string
+	Limit          string
+	RatingSource   string
+	MinRatingScore string
 }
