@@ -1,4 +1,4 @@
-package data
+package model
 
 type GameData struct {
 	InternalName       string `json:"internalName"`
@@ -12,8 +12,8 @@ type GameData struct {
 }
 
 type InputData struct {
-	Suffix  string `json:"suffix"`
-	Command string `json:"command"`
-	Param   string `json:"param"`
-	Name    string `json:"name"`
+	Search   string
+	Query    string
+	Top      int
+	MaxPrice int
 }
