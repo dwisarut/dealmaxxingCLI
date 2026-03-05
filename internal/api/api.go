@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func searchGameId(id string) {
+func SearchGameId(id string) {
 	url := "https://www.cheapshark.com/api/1.0/deals?id=" + id
 	method := "GET"
 
@@ -16,20 +16,20 @@ func searchGameId(id string) {
 	}
 	req, err := http.NewRequest(method, url, nil)
 
-	ErrorHandler(err)
+	errorHandler(err)
 	res, err := client.Do(req)
 
-	ErrorHandler(err)
+	errorHandler(err)
 	defer res.Body.Close()
 
 	body, err := io.ReadAll(res.Body)
 
-	ErrorHandler(err)
+	errorHandler(err)
 
 	fmt.Println(string(body))
 }
 
-func ErrorHandler(err error) {
+func errorHandler(err error) {
 	if err != nil {
 		fmt.Println(err)
 		return
