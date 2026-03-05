@@ -35,7 +35,7 @@ func QueryParser(input string) model.QueryParseType {
 	var data model.QueryParseType
 
 	switch {
-	case len(input) == 5:
+	case len(splitted) == 5:
 		data = model.QueryParseType{
 			Command:        splitted[0],
 			SortBy:         splitted[1],
@@ -46,7 +46,7 @@ func QueryParser(input string) model.QueryParseType {
 		fmt.Printf("Default query data: %#v\n", data)
 		return data
 
-	case len(input) == 4:
+	case len(splitted) == 4:
 		data = model.QueryParseType{
 			Command:      splitted[0],
 			SortBy:       splitted[1],
