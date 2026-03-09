@@ -11,11 +11,6 @@ type GameData struct {
 	SteamRatingPercent string `json:"steamRatingPercent"`
 }
 
-type SearchParseType struct {
-	Command string
-	Arg     string
-}
-
 type QueryParseType struct {
 	Command        string
 	SortBy         string
