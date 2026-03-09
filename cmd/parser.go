@@ -13,8 +13,8 @@ func SearchParser(input string) model.SearchParseType {
 
 	switch {
 	case len(splitted) > 2:
-		title := strings.Join(splitted[1:], "")
-		title = strings.ToUpper(title)
+		title := strings.Join(splitted[1:], "%20")
+		// title = strings.ToUpper(title)
 		data = model.SearchParseType{Command: splitted[0], Arg: title}
 		fmt.Printf("Data from long title game: %#v\n", data)
 		return data
