@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/dwisarut/dealmaxxingCLI/internal/api"
+	"github.com/dwisarut/dealmaxxingCLI/internal/model"
 )
 
 func InitCLI() {
@@ -31,7 +32,15 @@ func InitCLI() {
 		case strings.HasPrefix(input, "search"):
 			var title string = CommonParser(input)
 			fmt.Println("Searching...")
-			api.GetDealId(title)
+			fmt.Println()
+			var lists []model.SearchGameID = api.GetDealId(title)
+
+			for _, list := range lists {
+				fmt.Println("Title:", list.Title)
+				fmt.Println("Prices:", list.SalePrice, "$")
+				fmt.Println("ID:", list.DealID)
+				fmt.Println()
+			}
 
 		case strings.HasPrefix(input, "get"):
 			var title string = CommonParser(input)
