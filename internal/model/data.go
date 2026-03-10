@@ -11,6 +11,13 @@ type GameData struct {
 	SteamRatingPercent string `json:"steamRatingPercent"`
 }
 
+type SearchGameID struct {
+	Title     string `json:"title"`
+	DealID    string `json:"dealID"`
+	Saving    string `json:"saving"`
+	SalePrice string `json:"salePrice"`
+}
+
 type QueryParseType struct {
 	Command        string
 	SortBy         string
