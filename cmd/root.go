@@ -8,6 +8,7 @@ import (
 
 	"github.com/dwisarut/dealmaxxingCLI/internal/api"
 	"github.com/dwisarut/dealmaxxingCLI/internal/model"
+	"github.com/dwisarut/dealmaxxingCLI/internal/service"
 )
 
 func InitCLI() {
@@ -34,11 +35,12 @@ func InitCLI() {
 			fmt.Println("Searching...")
 			fmt.Println()
 			var lists []model.SearchGameID = api.GetDealId(title)
+			var displayLists []model.SearchGameID = service.MakeRedirectLink(lists)
 
-			for _, list := range lists {
+			for _, list := range displayLists {
 				fmt.Println("Title:", list.Title)
 				fmt.Println("Prices:", list.SalePrice, "$")
-				fmt.Println("ID:", list.DealID)
+				fmt.Println("Link:", list.Redirect)
 				fmt.Println()
 			}
 
