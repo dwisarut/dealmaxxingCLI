@@ -7,8 +7,6 @@ import (
 	"strings"
 
 	"github.com/dwisarut/dealmaxxingCLI/internal/api"
-	"github.com/dwisarut/dealmaxxingCLI/internal/model"
-	"github.com/dwisarut/dealmaxxingCLI/internal/service"
 )
 
 func InitCLI() {
@@ -31,18 +29,7 @@ func InitCLI() {
 			fmt.Println("Querying...")
 
 		case strings.HasPrefix(input, "search"):
-			var title string = CommonParser(input)
-			fmt.Println("Searching...")
-			fmt.Println()
-			var lists []model.SearchGameID = api.GetDealId(title)
-			var displayLists []model.SearchGameID = service.MakeRedirectLink(lists)
-
-			for _, list := range displayLists {
-				fmt.Println("Title:", list.Title)
-				fmt.Println("Prices:", list.SalePrice, "$")
-				fmt.Println("Link:", list.Redirect)
-				fmt.Println()
-			}
+			SearchHandler(input)
 
 		case strings.HasPrefix(input, "get"):
 			var title string = CommonParser(input)
