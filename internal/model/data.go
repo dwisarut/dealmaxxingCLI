@@ -13,6 +13,7 @@ type GameData struct {
 
 type SearchGameID struct {
 	Title     string `json:"external"`
+	GameIDTag string `json:"gameID"`
 	DealID    string `json:"cheapestDealID"`
 	SalePrice string `json:"cheapest"`
 	Redirect  string
