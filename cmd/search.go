@@ -17,6 +17,7 @@ func SearchHandler(input string) {
 
 	for _, list := range displayLists {
 		fmt.Println("Title:", list.Title)
+		fmt.Println("ID:", list.GameIDTag)
 		fmt.Println("Prices:", list.SalePrice, "$")
 		fmt.Println("Link:", list.Redirect)
 		fmt.Println()
