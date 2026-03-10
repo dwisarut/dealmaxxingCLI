@@ -28,9 +28,9 @@ func InitCLI() {
 			QueryParser(input)
 			fmt.Println("Querying...")
 
-		case strings.HasPrefix(input, "get"):
+		case strings.HasPrefix(input, "search"):
 			var title string = CommonParser(input)
-			fmt.Println("Getting...")
+			fmt.Println("Searching...")
 			api.GetDealId(title)
 
 		case strings.HasPrefix(input, "get"):
