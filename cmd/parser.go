@@ -7,26 +7,22 @@ import (
 	"github.com/dwisarut/dealmaxxingCLI/internal/model"
 )
 
-func SearchParser(input string) model.SearchParseType {
+func CommonParser(input string) string {
 	splitted := strings.Fields(input)
-	var data model.SearchParseType
+	var data string
 
 	switch {
 	case len(splitted) > 2:
-		title := strings.Join(splitted[1:], "%20")
-		// title = strings.ToUpper(title)
-		data = model.SearchParseType{Command: splitted[0], Arg: title}
-		fmt.Printf("Data from long title game: %#v\n", data)
+		data = strings.Join(splitted[1:], "%20")
 		return data
 
 	case len(splitted) == 2:
-		data = model.SearchParseType{Command: splitted[0], Arg: splitted[1]}
-		fmt.Printf("Data: %#v\n", data)
+		data = splitted[1]
 		return data
 
 	default:
 		fmt.Println("Invalid command")
-		return model.SearchParseType{}
+		return ""
 	}
 
 }
