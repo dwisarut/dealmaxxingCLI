@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/dwisarut/dealmaxxingCLI/internal/api"
 )
 
 func InitCLI() {
@@ -26,9 +28,15 @@ func InitCLI() {
 			QueryParser(input)
 			fmt.Println("Querying...")
 
-		case strings.HasPrefix(input, "search"):
-			SearchParser(input)
-			fmt.Println("Searching...")
+		case strings.HasPrefix(input, "get"):
+			var title string = CommonParser(input)
+			fmt.Println("Getting...")
+			api.GetDealId(title)
+
+		case strings.HasPrefix(input, "get"):
+			var title string = CommonParser(input)
+			fmt.Println("Getting...")
+			api.GetDealId(title)
 
 		case input == "exit":
 			fmt.Println("Exiting DealmaxxingCLI...")
