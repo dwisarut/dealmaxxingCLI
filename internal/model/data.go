@@ -12,10 +12,9 @@ type GameData struct {
 }
 
 type SearchGameID struct {
-	Title     string `json:"title"`
-	DealID    string `json:"dealID"`
-	Saving    string `json:"saving"`
-	SalePrice string `json:"salePrice"`
+	Title     string `json:"external"`
+	DealID    string `json:"cheapestDealID"`
+	SalePrice string `json:"cheapest"`
 }
 
 type QueryParseType struct {
