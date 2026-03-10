@@ -15,6 +15,7 @@ type SearchGameID struct {
 	Title     string `json:"external"`
 	DealID    string `json:"cheapestDealID"`
 	SalePrice string `json:"cheapest"`
+	Redirect  string
 }
 
 type QueryParseType struct {
