@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/dwisarut/dealmaxxingCLI/internal/model"
@@ -32,8 +33,11 @@ func GetGameFromId(id string) {
 	fmt.Println(string(body))
 }
 
-func GetDealFromTitle(name string) []model.SearchGameID {
-	url := "https://www.cheapshark.com/api/1.0/games?title=" + name
+func GetDealFromTitle(name string, pageNum int, pageSize int) []model.SearchGameID {
+	pageSizeStr := strconv.Itoa(pageSize)
+	pageNumStr := strconv.Itoa(pageNum)
+
+	url := "https://www.cheapshark.com/api/1.0/deals?title=" + name + "&pageSize=" + pageSizeStr + "&pageNumber=" + pageNumStr
 	method := "GET"
 
 	client := &http.Client{
