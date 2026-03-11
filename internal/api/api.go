@@ -10,8 +10,8 @@ import (
 	"github.com/dwisarut/dealmaxxingCLI/internal/model"
 )
 
-func searchGameFromId(id string) {
-	url := "https://www.cheapshark.com/api/1.0/deals?id=" + id
+func GetGameFromId(id string) {
+	url := "https://www.cheapshark.com/api/1.0/games?id=" + id
 	method := "GET"
 
 	client := &http.Client{
