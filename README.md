@@ -7,7 +7,8 @@ An interactive CLI (Command-Line Interface) tool that handling APIs logic such a
 dealmaxxingCLI/
 ├── cmd/                          # cmd package file
 |   ├── parser.go                 # input parser logics
-|	└── root.go                   # CLIs logics
+|   ├── root.go                   # CLIs logics
+|	└── search.go                 # Search command logic                  
 |
 ├── internal/
 |	├── api                       # api package file
