@@ -10,6 +10,7 @@ import (
 
 func SearchHandler(input string) {
 	var title string = CommonParser(input)
+	fmt.Println()
 	fmt.Println("Searching...")
 	fmt.Println()
 	var lists []model.SearchGameID = api.GetDealId(title)
