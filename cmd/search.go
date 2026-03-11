@@ -13,7 +13,7 @@ func SearchHandler(input string) {
 	fmt.Println()
 	fmt.Println("Searching...")
 	fmt.Println()
-	var lists []model.SearchGameID = api.GetDealId(title)
+	var lists []model.SearchGameID = api.GetDealFromTitle(title)
 	var displayLists []model.SearchGameID = service.MakeRedirectLink(lists)
 
 	for _, list := range displayLists {

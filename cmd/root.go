@@ -34,7 +34,7 @@ func InitCLI() {
 		case strings.HasPrefix(input, "get"):
 			var title string = CommonParser(input)
 			fmt.Println("Getting...")
-			api.GetDealId(title)
+			api.GetDealFromTitle(title)
 
 		case input == "exit":
 			fmt.Println("Exiting DealmaxxingCLI...")

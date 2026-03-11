@@ -32,7 +32,7 @@ func GetGameFromId(id string) {
 	fmt.Println(string(body))
 }
 
-func GetDealId(name string) []model.SearchGameID {
+func GetDealFromTitle(name string) []model.SearchGameID {
 	url := "https://www.cheapshark.com/api/1.0/games?title=" + name
 	method := "GET"
 
