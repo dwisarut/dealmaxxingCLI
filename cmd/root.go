@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/dwisarut/dealmaxxingCLI/internal/api"
+	"github.com/fatih/color"
 )
 
 func InitCLI() {
@@ -29,12 +29,12 @@ func InitCLI() {
 			fmt.Println("Querying...")
 
 		case strings.HasPrefix(input, "search"):
-			SearchHandler(input)
+			SearchHandler(reader, input)
 
-		case strings.HasPrefix(input, "get"):
-			var title string = CommonParser(input)
-			fmt.Println("Getting...")
-			api.GetDealFromTitle(title)
+		// case strings.HasPrefix(input, "get"):
+		// 	var title string = CommonParser(input)
+		// 	fmt.Println("Getting...")
+		// 	api.GetDealFromTitle(title)
 
 		case input == "exit":
 			fmt.Println("Exiting DealmaxxingCLI...")
@@ -50,13 +50,13 @@ func InitCLI() {
 func showCommand() {
 	fmt.Println()
 	fmt.Println("Here's an available commands:")
-	fmt.Printf("%-10s %s\n", "search", "Searching for a specific game")
-	fmt.Printf("%-10s %s\n", "query", "Query lists of game with specific parameter")
+	fmt.Printf("%s\t\t%s\n", color.GreenString("search"), "Searching for a specific game")
+	fmt.Printf("%s\t\t%s\n", color.GreenString("query"), "Query lists of game with specific parameter")
 }
 
 func initMessage() {
 	fmt.Println()
-	fmt.Println("DealmaxxingCLI")
+	fmt.Println(color.HiGreenString("DealmaxxingCLI"))
 	fmt.Println("Your trusty tools for finding cheap game!")
-	fmt.Println("Type cmd to find an available commands.")
+	fmt.Println("Type", color.HiYellowString("cmd"), "to find an available commands.")
 }
