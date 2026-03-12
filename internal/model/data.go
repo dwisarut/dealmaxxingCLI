@@ -16,6 +16,7 @@ type SearchGameID struct {
 	GameIDTag string `json:"gameID"`
 	DealID    string `json:"dealID"`
 	SalePrice string `json:"salePrice"`
+	StoreID   string `json:"storeID"`
 	Redirect  string
 }
 
