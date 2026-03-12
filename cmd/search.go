@@ -28,11 +28,13 @@ func SearchHandler(reader *bufio.Reader, input string) {
 		fmt.Println()
 		for _, list := range displayLists {
 			fmt.Println(color.HiCyanString(list.Title))
+			fmt.Println("Store:", list.StoreID)
 			fmt.Println("ID:", list.GameIDTag)
 			fmt.Println("Prices:", list.SalePrice, "$")
 			fmt.Println(color.GreenString("Link:"), color.GreenString(list.Redirect))
 			fmt.Println()
 		}
+
 		fmt.Println("Commands:", color.HiYellowString("prev (p)"), "|", color.HiGreenString("next (n)"), "|", color.HiRedString("cancel (cc)"))
 		fmt.Print("> ")
 		cmd, _ := reader.ReadString('\n')
