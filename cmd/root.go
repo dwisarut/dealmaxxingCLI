@@ -24,10 +24,6 @@ func InitCLI() {
 		case strings.HasPrefix(input, "cmd"):
 			showCommand()
 
-		case strings.HasPrefix(input, "query"):
-			QueryParser(input)
-			fmt.Println("Querying...")
-
 		case strings.HasPrefix(input, "search"):
 			SearchHandler(reader, input)
 
