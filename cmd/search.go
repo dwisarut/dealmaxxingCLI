@@ -14,13 +14,14 @@ import (
 func SearchHandler(reader *bufio.Reader, input string) {
 	var title string = CommonParser(input)
 	var pageNum int = 1
+	var pageSize int = 5
 
 	fmt.Println()
 	fmt.Println("Searching...")
 	fmt.Println()
 
 	for {
-		var lists []model.SearchGameID = api.GetDealFromTitle(title, pageNum, 5)
+		var lists []model.SearchGameID = api.GetDealFromTitle(title, pageNum, pageSize)
 		var displayLists []model.SearchGameID = service.MakeRedirectLink(lists)
 
 		fmt.Println(color.HiMagentaString("Page:"), pageNum)
