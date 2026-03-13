@@ -36,7 +36,7 @@ func GetStoreData() []model.StoreLists {
 	return stores
 }
 
-func GetGameFromId(id string) {
+func GetGameFromId(id string) model.GetGameID {
 	url := "https://www.cheapshark.com/api/1.0/games?id=" + id
 	method := "GET"
 
@@ -48,14 +48,21 @@ func GetGameFromId(id string) {
 	errorHandler(err)
 	res, err := client.Do(req)
 
+	if res.StatusCode == 404 {
+		return model.GetGameID{}
+	}
+
 	errorHandler(err)
 	defer res.Body.Close()
 
 	body, err := io.ReadAll(res.Body)
 
 	errorHandler(err)
+	var lists model.GetGameID
+	err = json.Unmarshal(body, &lists)
 
-	fmt.Println(string(body))
+	errorHandler(err)
+	return lists
 }
 
 func GetDealFromTitle(name string, pageNum int, pageSize int) []model.SearchGameID {
