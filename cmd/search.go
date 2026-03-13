@@ -24,6 +24,14 @@ func SearchHandler(reader *bufio.Reader, input string) {
 
 	for {
 		var lists []model.SearchGameID = api.GetDealFromTitle(title, pageNum, pageSize)
+
+		if len(lists) == 0 {
+			fmt.Println(color.HiRedString("No games founded."))
+			fmt.Println("Exiting...")
+			fmt.Println()
+			return
+		}
+
 		var displayLists []model.SearchGameID = service.MakeRedirectLink(lists)
 		displayLists = service.MatchStore(displayLists, stores)
 
@@ -34,7 +42,7 @@ func SearchHandler(reader *bufio.Reader, input string) {
 			fmt.Println("Store:", list.StoreName)
 			fmt.Println("ID:", list.GameIDTag)
 			fmt.Println("Prices:", list.SalePrice, "$")
-			fmt.Println(color.GreenString("Link:"), color.GreenString(list.Redirect))
+			fmt.Println(color.HiGreenString("Link:"), color.GreenString(list.Redirect))
 			fmt.Println()
 		}
 
