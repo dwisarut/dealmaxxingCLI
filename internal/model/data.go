@@ -26,10 +26,20 @@ type StoreLists struct {
 	Name string `json:"storeName"`
 }
 
-type QueryParseType struct {
-	Command        string
-	SortBy         string
-	Limit          string
-	RatingSource   string
-	MinRatingScore string
+type GetGameID struct {
+	Info  InfoAPI   `json:"info"`
+	Deals []DealAPI `json:"deals"`
+}
+
+type InfoAPI struct {
+	Title string `json:"title"`
+}
+
+type DealAPI struct {
+	StoreID   string `json:"storeID"`
+	DealID    string `json:"dealID"`
+	Price     string `json:"price"`
+	Savings   string `json:"savings"`
+	StoreName string
+	Redirect  string
 }
