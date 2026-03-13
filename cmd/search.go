@@ -20,15 +20,18 @@ func SearchHandler(reader *bufio.Reader, input string) {
 	fmt.Println("Searching...")
 	fmt.Println()
 
+	var stores []model.StoreLists = api.GetStoreData()
+
 	for {
 		var lists []model.SearchGameID = api.GetDealFromTitle(title, pageNum, pageSize)
 		var displayLists []model.SearchGameID = service.MakeRedirectLink(lists)
+		displayLists = service.MatchStore(displayLists, stores)
 
 		fmt.Println(color.HiMagentaString("Page:"), pageNum)
 		fmt.Println()
 		for _, list := range displayLists {
 			fmt.Println(color.HiCyanString(list.Title))
-			fmt.Println("Store:", list.StoreID)
+			fmt.Println("Store:", list.StoreName)
 			fmt.Println("ID:", list.GameIDTag)
 			fmt.Println("Prices:", list.SalePrice, "$")
 			fmt.Println(color.GreenString("Link:"), color.GreenString(list.Redirect))
