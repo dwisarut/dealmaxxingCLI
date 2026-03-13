@@ -17,7 +17,7 @@ func SearchHandler(reader *bufio.Reader, input string) {
 	var pageSize int = 5
 
 	fmt.Println()
-	fmt.Println("Searching...")
+	color.Green("Searching...")
 	fmt.Println()
 
 	var stores []model.StoreLists = api.GetStoreData()
@@ -35,13 +35,13 @@ func SearchHandler(reader *bufio.Reader, input string) {
 		var displayLists []model.SearchGameID = service.MakeRedirectLink(lists)
 		displayLists = service.MatchStore(displayLists, stores)
 
-		fmt.Println(color.HiMagentaString("Page:"), pageNum)
+		fmt.Println("Page:", pageNum)
 		fmt.Println()
 		for _, list := range displayLists {
 			fmt.Println(color.HiCyanString(list.Title))
-			fmt.Println("Store:", list.StoreName)
-			fmt.Println("ID:", list.GameIDTag)
-			fmt.Println("Prices:", list.SalePrice, "$")
+			fmt.Println(color.HiBlueString("Store:"), color.BlueString(list.StoreName))
+			fmt.Println(color.HiMagentaString("ID:"), color.MagentaString(list.GameIDTag))
+			fmt.Println(color.HiYellowString("Prices:"), color.YellowString(list.SalePrice), color.YellowString("$"))
 			fmt.Println(color.HiGreenString("Link:"), color.GreenString(list.Redirect))
 			fmt.Println()
 		}
@@ -65,7 +65,7 @@ func SearchHandler(reader *bufio.Reader, input string) {
 			fmt.Println()
 
 		case "cc":
-			println("Exiting search function!")
+			println(color.HiRedString("Exiting search function!"))
 			fmt.Println()
 			return
 
