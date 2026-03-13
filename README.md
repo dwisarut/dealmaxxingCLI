@@ -3,24 +3,26 @@
 An interactive CLI (Command-Line Interface) tool that handling APIs logic such as searching, and querying. The final output is the links of all available deals from multiple stores such as Steam, Gamersgate, Fanatical, etc.
 
 ## File Structure
+
 ```
 dealmaxxingCLI/
 ├── cmd/                          # cmd package file
-|   ├── parser.go                 # input parser logics
+|   ├── get.go                    # Get command logic
+|   ├── parser.go                 # Input parser logics
 |   ├── root.go                   # CLIs logics
-|	└── search.go                 # Search command logic                  
+|	└── search.go                 # Search command logic
 |
 ├── internal/
 |	├── api                       # api package file
-|	|	└── api.go                # http request and response
+|	|	└── api.go                # HTTP request and response
 |   |
 |	├── model                     # model package
-|	|	└── data.go               # define data model
+|	|	└── data.go               # Define data model
 |   |
 |   └── service                   # service package
-|       └── deal.go               # handling filter, sort, etc.
+|       └── deal.go               # Handling filter, sort, etc.
 |
 ├── go.mod
 ├── go.sum
-└── main.go                       # entry point file
+└── main.go                       # Entry point file
 ```
