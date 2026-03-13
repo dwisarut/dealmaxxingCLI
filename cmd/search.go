@@ -11,7 +11,7 @@ import (
 	"github.com/fatih/color"
 )
 
-func SearchHandler(reader *bufio.Reader, input string) {
+func SearchHandler(reader *bufio.Reader, input string, storeIndex map[string]string) {
 	var title string = CommonParser(input)
 	var pageNum int = 1
 	var pageSize int = 5
@@ -19,8 +19,6 @@ func SearchHandler(reader *bufio.Reader, input string) {
 	fmt.Println()
 	color.Green("Searching...")
 	fmt.Println()
-
-	var stores []model.StoreLists = api.GetStoreData()
 
 	for {
 		var lists []model.SearchGameID = api.GetDealFromTitle(title, pageNum, pageSize)
@@ -32,8 +30,8 @@ func SearchHandler(reader *bufio.Reader, input string) {
 			return
 		}
 
-		var displayLists []model.SearchGameID = service.MakeRedirectLink(lists)
-		displayLists = service.MatchStore(displayLists, stores)
+		var displayLists []model.SearchGameID = service.MakeSearchRedirect(lists)
+		displayLists = service.MatchSearchStore(displayLists, storeIndex)
 
 		fmt.Println("Page:", pageNum)
 		fmt.Println()
