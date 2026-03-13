@@ -11,6 +11,31 @@ import (
 	"github.com/dwisarut/dealmaxxingCLI/internal/model"
 )
 
+func GetStoreData() []model.StoreLists {
+	url := "https://www.cheapshark.com/api/1.0/stores"
+	method := "GET"
+
+	client := &http.Client{
+		Timeout: 5 * time.Second,
+	}
+	req, err := http.NewRequest(method, url, nil)
+	errorHandler(err)
+	res, err := client.Do(req)
+
+	errorHandler(err)
+	defer res.Body.Close()
+
+	body, err := io.ReadAll(res.Body)
+
+	errorHandler(err)
+
+	var stores []model.StoreLists
+	err = json.Unmarshal(body, &stores)
+	errorHandler(err)
+
+	return stores
+}
+
 func GetGameFromId(id string) {
 	url := "https://www.cheapshark.com/api/1.0/games?id=" + id
 	method := "GET"
