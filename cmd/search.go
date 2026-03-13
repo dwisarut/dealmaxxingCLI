@@ -42,7 +42,7 @@ func SearchHandler(reader *bufio.Reader, input string) {
 			fmt.Println(color.HiBlueString("Store:"), color.BlueString(list.StoreName))
 			fmt.Println(color.HiMagentaString("ID:"), color.MagentaString(list.GameIDTag))
 			fmt.Println(color.HiYellowString("Prices:"), color.YellowString(list.SalePrice), color.YellowString("$"))
-			fmt.Println(color.HiGreenString("Link:"), color.GreenString(list.Redirect))
+			fmt.Println(color.HiWhiteString("Link:"), color.GreenString(list.Redirect))
 			fmt.Println()
 		}
 
