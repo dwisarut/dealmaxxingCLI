@@ -18,6 +18,12 @@ type SearchGameID struct {
 	SalePrice string `json:"salePrice"`
 	StoreID   string `json:"storeID"`
 	Redirect  string
+	StoreName string
+}
+
+type StoreLists struct {
+	ID   string `json:"storeID"`
+	Name string `json:"storeName"`
 }
 
 type QueryParseType struct {
