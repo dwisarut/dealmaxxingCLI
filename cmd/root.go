@@ -47,7 +47,7 @@ func showCommand() {
 	fmt.Println()
 	fmt.Println("Here's an available commands:")
 	fmt.Printf("%s\t\t%s\n", color.GreenString("search"), "Searching for a specific game")
-	fmt.Printf("%s\t\t%s\n", color.GreenString("query"), "Query lists of game with specific parameter")
+	fmt.Printf("%s\t\t%s\n", color.GreenString("get"), "Find a specific game with ID for all available deals")
 }
 
 func initMessage() {
