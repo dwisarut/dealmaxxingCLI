@@ -6,6 +6,8 @@ import (
 	"os"
 	"strings"
 
+	"github.com/dwisarut/dealmaxxingCLI/internal/api"
+	"github.com/dwisarut/dealmaxxingCLI/internal/service"
 	"github.com/fatih/color"
 )
 
@@ -13,6 +15,7 @@ func InitCLI() {
 	reader := bufio.NewReader(os.Stdin)
 
 	initMessage()
+	storesMap := fetchStoreMap()
 
 	for {
 		fmt.Print("> ")
@@ -25,12 +28,10 @@ func InitCLI() {
 			showCommand()
 
 		case strings.HasPrefix(input, "search"):
-			SearchHandler(reader, input)
+			SearchHandler(reader, input, storesMap)
 
-		// case strings.HasPrefix(input, "get"):
-		// 	var title string = CommonParser(input)
-		// 	fmt.Println("Getting...")
-		// 	api.GetDealFromTitle(title)
+		case strings.HasPrefix(input, "get"):
+			GetHandler(reader, input, storesMap)
 
 		case input == "exit":
 			fmt.Println("Exiting DealmaxxingCLI...")
@@ -55,4 +56,10 @@ func initMessage() {
 	fmt.Println(color.HiGreenString("DealmaxxingCLI"))
 	fmt.Println("Your trusty tools for finding cheap game!")
 	fmt.Println("Type", color.HiYellowString("cmd"), "to find an available commands.")
+}
+
+func fetchStoreMap() map[string]string {
+	stores := api.GetStoreData()
+	storesMap := service.IndexingStore(stores)
+	return storesMap
 }
