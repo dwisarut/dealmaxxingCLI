@@ -36,13 +36,18 @@ func SearchHandler(reader *bufio.Reader, input string, storeIndex map[string]str
 		fmt.Println(color.HiWhiteString("Page:"), pageNum)
 		fmt.Println()
 
-		for _, list := range displayLists {
-			fmt.Println(color.HiCyanString(list.Title))
-			fmt.Println(color.HiBlueString("Store:"), color.BlueString(list.StoreName))
-			fmt.Println(color.HiMagentaString("ID:"), color.MagentaString(list.GameIDTag))
-			fmt.Println(color.HiYellowString("Prices:"), color.YellowString(list.SalePrice), color.YellowString("$"))
-			fmt.Println(color.HiWhiteString("Link:"), color.GreenString(list.Redirect))
-			fmt.Println()
+		if pageNum != len(lists) {
+			for _, list := range displayLists {
+				fmt.Println(color.HiCyanString(list.Title))
+				fmt.Println(color.HiBlueString("Store:"), color.BlueString(list.StoreName))
+				fmt.Println(color.HiMagentaString("ID:"), color.MagentaString(list.GameIDTag))
+				fmt.Println(color.HiYellowString("Prices:"), color.YellowString(list.SalePrice), color.YellowString("$"))
+				fmt.Println(color.HiWhiteString("Link:"), color.GreenString(list.Redirect))
+				fmt.Println()
+			}
+		} else {
+			color.HiYellow("Sorry, this is the end of the list!")
+			return
 		}
 
 		fmt.Println("Commands:", color.HiYellowString("prev (p)"), "|", color.HiGreenString("next (n)"), "|", color.HiRedString("cancel (cc)"))
