@@ -11,9 +11,8 @@ import (
 	"github.com/fatih/color"
 )
 
-func SearchHandler(reader *bufio.Reader, input string, storeIndex map[string]string) {
+func SearchHandler(reader *bufio.Reader, input string) {
 	var title string = CommonParser(input)
-	var pageNum int = 1
 
 	if title == "" {
 		return
@@ -23,52 +22,28 @@ func SearchHandler(reader *bufio.Reader, input string, storeIndex map[string]str
 	color.Green("Searching...")
 	fmt.Println()
 
-	for {
-		var lists []model.SearchGameID = api.GetDealFromTitle(title)
+	var lists []model.SearchGameID = api.GetDealFromTitle(title)
 
-		if len(lists) == 0 || len(lists) == 60 {
-			fmt.Println(color.HiRedString("No games founded."))
-			fmt.Println("Exiting...")
-			fmt.Println()
-			return
-		}
-
-		var displayLists []model.SearchGameID = service.MakeSearchRedirect(lists)
-
-		fmt.Println(color.HiWhiteString("Page:"), pageNum, len(lists))
+	if len(lists) == 0 || len(lists) == 60 {
+		fmt.Println(color.HiRedString("No games founded."))
+		fmt.Println("Exiting...")
 		fmt.Println()
-
-		for _, list := range displayLists {
-			fmt.Println(color.HiCyanString(list.Title))
-			fmt.Println(color.HiMagentaString("ID:"), color.MagentaString(list.GameIDTag))
-			fmt.Println(color.HiYellowString("Prices:"), color.YellowString(list.SalePrice), color.YellowString("$"))
-			fmt.Println(color.HiWhiteString("Link:"), color.GreenString(list.Redirect))
-			fmt.Println()
-		}
-
-		fmt.Println("Commands:", color.HiYellowString("prev (p)"), "|", color.HiGreenString("next (n)"), "|", color.HiRedString("cancel (cc)"))
-		fmt.Print("> ")
-		cmd, _ := reader.ReadString('\n')
-		cmd = strings.TrimSpace(cmd)
-
-		switch cmd {
-		case "n":
-			pageNum++
-			fmt.Println()
-
-		case "p":
-			if pageNum > 1 {
-				pageNum--
-			}
-			fmt.Println()
-
-		case "cc":
-			println(color.HiRedString("Exiting search function!"))
-			fmt.Println()
-			return
-
-		default:
-			println("Unknown command.")
-		}
+		return
 	}
+
+	var displayLists []model.SearchGameID = service.MakeSearchRedirect(lists)
+
+	fmt.Println(color.HiWhiteString("Total results:"), len(lists))
+	fmt.Println()
+
+	for _, list := range displayLists {
+		fmt.Println(color.HiCyanString(list.Title))
+		fmt.Println(color.HiMagentaString("ID:"), color.MagentaString(list.GameIDTag))
+		fmt.Println(color.HiYellowString("Prices:"), color.YellowString(list.SalePrice), color.YellowString("$"))
+		fmt.Println(color.HiWhiteString("Link:"), color.GreenString(list.Redirect))
+		fmt.Println()
+	}
+
+	fmt.Println(strings.Repeat("_", 100))
+
 }
