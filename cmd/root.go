@@ -24,7 +24,7 @@ func InitCLI() {
 		input = strings.TrimSpace(input)
 
 		switch {
-		case strings.HasPrefix(input, "cmd"):
+		case strings.HasPrefix(input, "help"):
 			showCommand()
 
 		case strings.HasPrefix(input, "search"):
@@ -55,7 +55,7 @@ func initMessage() {
 	fmt.Println()
 	fmt.Println(color.HiGreenString("DealmaxxingCLI"))
 	fmt.Println("Your trusty tools for finding cheap game!")
-	fmt.Println("Type", color.HiYellowString("cmd"), "to find an available commands.")
+	fmt.Println("Type", color.HiYellowString("help"), "to find an available commands.")
 }
 
 func fetchStoreMap() map[string]string {
