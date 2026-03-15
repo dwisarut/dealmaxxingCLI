@@ -1,8 +1,10 @@
 package cmd
 
 import (
-	"fmt"
+	"net/url"
 	"strings"
+
+	"github.com/fatih/color"
 )
 
 func CommonParser(input string) string {
@@ -11,15 +13,20 @@ func CommonParser(input string) string {
 
 	switch {
 	case len(splitted) > 2:
-		data = strings.Join(splitted[1:], "%20")
+		data = strings.Join(splitted[1:], "")
+		data = url.QueryEscape(data)
 		return data
 
 	case len(splitted) == 2:
 		data = splitted[1]
 		return data
 
+	case len(splitted) < 2:
+		color.HiRed("Invalid parameters, please search again!")
+		return ""
+
 	default:
-		fmt.Println("Invalid command")
+		color.HiRed("Invalid command")
 		return ""
 	}
 
