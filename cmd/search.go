@@ -45,5 +45,5 @@ func SearchHandler(reader *bufio.Reader, input string) {
 	}
 
 	fmt.Println(strings.Repeat("_", 100))
-
+	fmt.Println()
 }
