@@ -33,21 +33,16 @@ func SearchHandler(reader *bufio.Reader, input string, storeIndex map[string]str
 		var displayLists []model.SearchGameID = service.MakeSearchRedirect(lists)
 		displayLists = service.MatchSearchStore(displayLists, storeIndex)
 
-		fmt.Println(color.HiWhiteString("Page:"), pageNum)
+		fmt.Println(color.HiWhiteString("Page:"), pageNum, len(lists))
 		fmt.Println()
 
-		if pageNum != len(lists) {
-			for _, list := range displayLists {
-				fmt.Println(color.HiCyanString(list.Title))
-				fmt.Println(color.HiBlueString("Store:"), color.BlueString(list.StoreName))
-				fmt.Println(color.HiMagentaString("ID:"), color.MagentaString(list.GameIDTag))
-				fmt.Println(color.HiYellowString("Prices:"), color.YellowString(list.SalePrice), color.YellowString("$"))
-				fmt.Println(color.HiWhiteString("Link:"), color.GreenString(list.Redirect))
-				fmt.Println()
-			}
-		} else {
-			color.HiYellow("Sorry, this is the end of the list!")
-			return
+		for _, list := range displayLists {
+			fmt.Println(color.HiCyanString(list.Title))
+			fmt.Println(color.HiBlueString("Store:"), color.BlueString(list.StoreName))
+			fmt.Println(color.HiMagentaString("ID:"), color.MagentaString(list.GameIDTag))
+			fmt.Println(color.HiYellowString("Prices:"), color.YellowString(list.SalePrice), color.YellowString("$"))
+			fmt.Println(color.HiWhiteString("Link:"), color.GreenString(list.Redirect))
+			fmt.Println()
 		}
 
 		fmt.Println("Commands:", color.HiYellowString("prev (p)"), "|", color.HiGreenString("next (n)"), "|", color.HiRedString("cancel (cc)"))
@@ -57,9 +52,7 @@ func SearchHandler(reader *bufio.Reader, input string, storeIndex map[string]str
 
 		switch cmd {
 		case "n":
-			if pageNum < len(lists) {
-				pageNum++
-			}
+			pageNum++
 			fmt.Println()
 
 		case "p":
