@@ -42,7 +42,6 @@ dealmaxxingCLI/
 
    ```
    go mod tidy
-
    ```
 
 3. Run this project
