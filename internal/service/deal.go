@@ -11,16 +11,6 @@ func MakeSearchRedirect(lists []model.SearchGameID) []model.SearchGameID {
 	return lists
 }
 
-func MatchSearchStore(lists []model.SearchGameID, storeLookup map[string]string) []model.SearchGameID {
-	for i := range lists {
-		if val, ok := storeLookup[lists[i].StoreID]; ok { // JS Map.has() & Map.get() equivalent
-			lists[i].StoreName = val
-		}
-	}
-
-	return lists
-}
-
 func IndexingStore(stores []model.StoreLists) map[string]string {
 	var storeLookup map[string]string
 	storeLookup = make(map[string]string)
