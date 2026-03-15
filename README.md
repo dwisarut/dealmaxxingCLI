@@ -51,5 +51,5 @@ dealmaxxingCLI/
    Alternatively, you can build a main.exe and open it from there.
    ```
    go build ./main.go
-   go run ./main.go (If you want to access from terminal or CLI)
+   go run ./main.go
    ```
