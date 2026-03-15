@@ -65,6 +65,7 @@ func initMessage() {
 
 	fmt.Println("Your trusty tools for finding cheap game!")
 	fmt.Println("Type", color.HiYellowString("help"), "to find an available commands.")
+	fmt.Println()
 }
 
 func fetchStoreMap() map[string]string {
