@@ -15,6 +15,10 @@ func SearchHandler(reader *bufio.Reader, input string, storeIndex map[string]str
 	var title string = CommonParser(input)
 	var pageNum int = 1
 
+	if title == "" {
+		return
+	}
+
 	fmt.Println()
 	color.Green("Searching...")
 	fmt.Println()
@@ -22,7 +26,7 @@ func SearchHandler(reader *bufio.Reader, input string, storeIndex map[string]str
 	for {
 		var lists []model.SearchGameID = api.GetDealFromTitle(title)
 
-		if len(lists) == 0 {
+		if len(lists) == 0 || len(lists) == 60 {
 			fmt.Println(color.HiRedString("No games founded."))
 			fmt.Println("Exiting...")
 			fmt.Println()
