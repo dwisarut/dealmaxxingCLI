@@ -26,3 +26,31 @@ dealmaxxingCLI/
 ├── go.sum
 └── main.go                       # Entry point file
 ```
+
+## Getting started
+
+1. Clone this repository
+
+   ```
+   git clone https://github.com/dwisarut/dealmaxxingCLI.git
+   cd dealmaxxingCLI
+   ```
+
+2. Install dependencies
+
+   Installing all depedencies
+
+   ```
+   go mod tidy
+
+   ```
+
+3. Run this project
+   ```
+   go run ./main.go
+   ```
+   Alternatively, you can build a main.exe and open it from there.
+   ```
+   go build ./main.go
+   go run ./main.go (If you want to access from terminal or CLI)
+   ```
