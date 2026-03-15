@@ -33,7 +33,7 @@ func InitCLI() {
 		case strings.HasPrefix(input, "get"):
 			GetHandler(reader, input, storesMap)
 
-		case input == "exit":
+		case input == "exit" || input == "t":
 			fmt.Println("Exiting DealmaxxingCLI...")
 			return
 
