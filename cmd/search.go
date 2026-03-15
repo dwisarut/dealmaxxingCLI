@@ -33,8 +33,9 @@ func SearchHandler(reader *bufio.Reader, input string, storeIndex map[string]str
 		var displayLists []model.SearchGameID = service.MakeSearchRedirect(lists)
 		displayLists = service.MatchSearchStore(displayLists, storeIndex)
 
-		fmt.Println("Page:", pageNum)
+		fmt.Println(color.HiWhiteString("Page:"), pageNum)
 		fmt.Println()
+
 		for _, list := range displayLists {
 			fmt.Println(color.HiCyanString(list.Title))
 			fmt.Println(color.HiBlueString("Store:"), color.BlueString(list.StoreName))
