@@ -47,7 +47,7 @@ func GetGameFromId(id string) model.GetGameID {
 	errorHandler(err)
 	res, err := client.Do(req)
 
-	if res.StatusCode == 404 {
+	if res.StatusCode == 404 || res.StatusCode == 403 {
 		return model.GetGameID{}
 	}
 
@@ -76,6 +76,10 @@ func GetDealFromTitle(name string) []model.SearchGameID {
 
 	errorHandler(err)
 	res, err := client.Do(req)
+
+	if res.StatusCode != 200 {
+		return []model.SearchGameID{}
+	}
 
 	errorHandler(err)
 	defer res.Body.Close()
