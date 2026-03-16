@@ -8,8 +8,8 @@ An interactive CLI (Command-Line Interface) tool that handling APIs logic such a
 
 ```
 dealmaxxingCLI/
-├── cmd/                              # cmd package file
-|   └── cli/
+├── cmd/                              # cmd files
+|   └── cli/                          # cli package file
 |       ├── get.go                    # Get command logic
 |       ├── id.go                     # ID command logic
 |       ├── parser.go                 # Input parser logic
@@ -17,14 +17,14 @@ dealmaxxingCLI/
 |       └── search.go                 # Search command logic
 |
 ├── internal/
-|	 ├── api                           # api package file
-|	 |	 └── api.go                     # HTTP request and response
-|	 |
-|	 ├── cache                         # cache package file
-|	 |	 └── cache.go                   # Caching search data
-|	 |
-|	 ├── model                         # model package
-|	 |	 └── data.go                    # Define data model
+|	├── api                           # api package file
+|	|	└── api.go                    # HTTP request and response
+|	|
+|	├── cache                         # cache package file
+|	|	└── cache.go                  # Caching search data
+|	|
+|	├── model                         # model package
+|	|	└── data.go                   # Define data model
 |   |
 |   └── service                       # service package
 |       └── deal.go                   # Handling filter, sort, etc.
