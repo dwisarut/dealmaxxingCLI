@@ -34,6 +34,9 @@ func InitCLI() {
 		case strings.HasPrefix(input, "get"):
 			GetHandler(reader, input, storesMap)
 
+		case strings.HasPrefix(input, "id"):
+			IDHandler(reader, input)
+
 		case input == "exit" || input == "t":
 			fmt.Println("Exiting DealmaxxingCLI...")
 			return
@@ -48,8 +51,9 @@ func InitCLI() {
 func showCommand() {
 	fmt.Println()
 	fmt.Println("Here's an available commands:")
-	fmt.Printf("%s\t\t%s\n", color.GreenString("search"), "Searching for a specific game")
+	fmt.Printf("%s\t\t%s\n", color.GreenString("search"), "Searching for a game title and proximity results")
 	fmt.Printf("%s\t\t%s\n", color.GreenString("get"), "Find a specific game with ID for all available deals")
+	fmt.Printf("%s\t\t%s\n", color.GreenString("id"), "Find a specific game ID from the title.")
 }
 
 func initMessage() {
