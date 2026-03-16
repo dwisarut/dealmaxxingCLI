@@ -42,3 +42,8 @@ type DealAPI struct {
 	StoreName string
 	Redirect  string
 }
+
+type GameIdentifier struct {
+	Name   string `json:"external"`
+	GameID string `json:"gameID"`
+}
