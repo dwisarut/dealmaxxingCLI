@@ -38,5 +38,5 @@ func IDHandler(reader *bufio.Reader, input string) {
 		fmt.Printf("%-90s %-10s\n", color.HiCyanString(list.Name), color.GreenString(list.GameID))
 	}
 
-	fmt.Println(strings.Repeat("_", 100))
+	fmt.Println(strings.Repeat("_", 120))
 }

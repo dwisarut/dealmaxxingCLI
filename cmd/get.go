@@ -14,6 +14,10 @@ import (
 func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string) {
 	var id string = CommonParser(input)
 
+	if id == "" {
+		return
+	}
+
 	fmt.Println()
 	color.Green("Getting...")
 	fmt.Println()
@@ -40,5 +44,5 @@ func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string
 		fmt.Println()
 	}
 
-	fmt.Println(strings.Repeat("_", 100))
+	fmt.Println(strings.Repeat("_", 120))
 }
