@@ -10,7 +10,8 @@ An interactive CLI (Command-Line Interface) tool that handling APIs logic such a
 dealmaxxingCLI/
 ├── cmd/                          # cmd package file
 |   ├── get.go                    # Get command logic
-|   ├── parser.go                 # Input parser logics
+|   ├── id.go                     # ID command logic
+|   ├── parser.go                 # Input parser logic
 |   ├── root.go                   # CLIs logics
 |	└── search.go                 # Search command logic
 |
