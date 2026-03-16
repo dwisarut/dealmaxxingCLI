@@ -2,7 +2,9 @@
 
 An interactive CLI (Command-Line Interface) tool that handling APIs logic such as searching, and querying. The final output is the links of all available deals from multiple stores such as Steam, Gamersgate, Fanatical, etc.
 
-## File Structure
+## Getting started
+
+### File Structure
 
 ```
 dealmaxxingCLI/
@@ -27,7 +29,7 @@ dealmaxxingCLI/
 └── main.go                       # Entry point file
 ```
 
-## Getting started
+### Installation
 
 1. Clone this repository
 
