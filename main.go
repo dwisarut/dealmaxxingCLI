@@ -1,7 +1,7 @@
 package main
 
-import "github.com/dwisarut/dealmaxxingCLI/cmd"
+import "github.com/dwisarut/dealmaxxingCLI/cmd/cli"
 
 func main() {
-	cmd.InitCLI()
+	cli.InitCLI()
 }
