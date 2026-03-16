@@ -8,26 +8,30 @@ An interactive CLI (Command-Line Interface) tool that handling APIs logic such a
 
 ```
 dealmaxxingCLI/
-├── cmd/                          # cmd package file
-|   ├── get.go                    # Get command logic
-|   ├── id.go                     # ID command logic
-|   ├── parser.go                 # Input parser logic
-|   ├── root.go                   # CLIs logics
-|	└── search.go                 # Search command logic
+├── cmd/                              # cmd package file
+|   └── cli/
+|       ├── get.go                    # Get command logic
+|       ├── id.go                     # ID command logic
+|       ├── parser.go                 # Input parser logic
+|       ├── root.go                   # CLIs logics
+|       └── search.go                 # Search command logic
 |
 ├── internal/
-|	├── api                       # api package file
-|	|	└── api.go                # HTTP request and response
+|	 ├── api                           # api package file
+|	 |	 └── api.go                     # HTTP request and response
+|	 |
+|	 ├── cache                         # cache package file
+|	 |	 └── cache.go                   # Caching search data
+|	 |
+|	 ├── model                         # model package
+|	 |	 └── data.go                    # Define data model
 |   |
-|	├── model                     # model package
-|	|	└── data.go               # Define data model
-|   |
-|   └── service                   # service package
-|       └── deal.go               # Handling filter, sort, etc.
+|   └── service                       # service package
+|       └── deal.go                   # Handling filter, sort, etc.
 |
 ├── go.mod
 ├── go.sum
-└── main.go                       # Entry point file
+└── main.go                           # Entry point file
 ```
 
 ### Installation
