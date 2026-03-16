@@ -3,6 +3,7 @@ package cmd
 import (
 	"bufio"
 	"fmt"
+	"strings"
 
 	"github.com/dwisarut/dealmaxxingCLI/internal/api"
 	"github.com/dwisarut/dealmaxxingCLI/internal/model"
@@ -38,4 +39,6 @@ func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string
 		fmt.Println(color.HiWhiteString("Link:"), color.GreenString(list.Redirect))
 		fmt.Println()
 	}
+
+	fmt.Println(strings.Repeat("_", 100))
 }
