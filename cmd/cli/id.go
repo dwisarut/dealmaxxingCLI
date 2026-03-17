@@ -14,6 +14,7 @@ func IDHandler(reader *bufio.Reader, input string) {
 	var title string = CommonParser(input)
 
 	if title == "" {
+		color.HiRed("Invalid input! Try typing a proper name again :D")
 		return
 	}
 
@@ -23,7 +24,7 @@ func IDHandler(reader *bufio.Reader, input string) {
 
 	var lists []model.GameIdentifier = api.GetGameIdentifier(title)
 
-	if len(lists) == 0 || len(lists) == 60 {
+	if len(lists) == 0 {
 		fmt.Println(color.HiRedString("No games founded."))
 		fmt.Println("Exiting...")
 		fmt.Println()
