@@ -36,8 +36,9 @@ func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string
 
 	color.HiWhite("Currently available deals:")
 	fmt.Println()
+	fmt.Println(color.HiCyanString(displayList.Info.Title))
+
 	for _, list := range displayList.Deals {
-		fmt.Println(color.HiCyanString(displayList.Info.Title))
 		fmt.Println(color.HiBlueString("Store:"), color.HiBlueString(list.StoreName))
 		fmt.Println(color.HiYellowString("Prices:"), color.YellowString(list.Price), color.YellowString("$"))
 		fmt.Println(color.HiWhiteString("Link:"), color.GreenString(list.Redirect))
