@@ -13,7 +13,9 @@ import (
 func IDHandler(reader *bufio.Reader, input string) {
 	var title string = CommonParser(input)
 
-	if title == "" {
+	isValid := inputValidation(title)
+
+	if !isValid {
 		color.HiRed("Invalid input! Try typing a proper name again :D")
 		return
 	}
@@ -40,4 +42,11 @@ func IDHandler(reader *bufio.Reader, input string) {
 	}
 
 	fmt.Println(strings.Repeat("_", 120))
+}
+
+func inputValidation(data string) bool {
+	if strings.Contains(data, "&") || strings.Contains(data, "=") || strings.Contains(data, "'") || strings.Contains(data, `"`) {
+		return false
+	}
+	return true
 }

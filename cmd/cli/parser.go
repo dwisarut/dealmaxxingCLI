@@ -15,22 +15,10 @@ func CommonParser(input string) string {
 	case len(splitted) > 2:
 		data = strings.Join(splitted[1:], "")
 		data = url.QueryEscape(data)
-		isValid := inputValidation(data)
-
-		if !isValid {
-			return ""
-		}
-
 		return data
 
 	case len(splitted) == 2:
 		data = splitted[1]
-		isValid := inputValidation(data)
-
-		if !isValid {
-			return ""
-		}
-
 		return data
 
 	case len(splitted) < 2:
@@ -42,11 +30,4 @@ func CommonParser(input string) string {
 		return ""
 	}
 
-}
-
-func inputValidation(data string) bool {
-	if strings.Contains(data, "&") || strings.Contains(data, "=") || strings.Contains(data, "'") || strings.Contains(data, `"`) {
-		return false
-	}
-	return true
 }
