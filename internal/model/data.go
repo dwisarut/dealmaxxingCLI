@@ -11,15 +11,6 @@ type GameData struct {
 	SteamRatingPercent string `json:"steamRatingPercent"`
 }
 
-type SearchGameID struct {
-	Title     string `json:"external"`
-	GameIDTag string `json:"gameID"`
-	DealID    string `json:"cheapestDealID"`
-	SalePrice string `json:"cheapest"`
-	Redirect  string
-	StoreName string
-}
-
 type StoreLists struct {
 	ID   string `json:"storeID"`
 	Name string `json:"storeName"`

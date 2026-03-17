@@ -28,9 +28,6 @@ func InitCLI() {
 		case strings.HasPrefix(input, "help"):
 			showCommand()
 
-		case strings.HasPrefix(input, "search"):
-			SearchHandler(reader, input)
-
 		case strings.HasPrefix(input, "get"):
 			GetHandler(reader, input, storesMap)
 
@@ -51,7 +48,6 @@ func InitCLI() {
 func showCommand() {
 	fmt.Println()
 	fmt.Println("Here's an available commands:")
-	fmt.Printf("%s\t\t%s\n", color.GreenString("search"), "Searching for a game title and proximity results")
 	fmt.Printf("%s\t\t%s\n", color.GreenString("get"), "Find a specific game with ID for all available deals")
 	fmt.Printf("%s\t\t%s\n", color.GreenString("id"), "Find a specific game ID from the title.")
 }
