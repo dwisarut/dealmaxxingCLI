@@ -15,6 +15,7 @@ func SearchHandler(reader *bufio.Reader, input string) {
 	var title string = CommonParser(input)
 
 	if title == "" {
+		color.HiRed("Invalid input! Try search it with proper name again :D")
 		return
 	}
 
@@ -24,7 +25,7 @@ func SearchHandler(reader *bufio.Reader, input string) {
 
 	var lists []model.SearchGameID = api.GetDealFromTitle(title)
 
-	if len(lists) == 0 || len(lists) == 60 {
+	if len(lists) == 0 {
 		fmt.Println(color.HiRedString("No games founded."))
 		fmt.Println("Exiting...")
 		fmt.Println()
