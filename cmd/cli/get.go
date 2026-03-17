@@ -28,9 +28,6 @@ func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string
 	cacheKey := cache.MakeCachingKey(id)
 
 	if val, ok := cachingGet[cacheKey]; ok {
-		color.HiYellow("Cache Hit")
-		color.HiWhite("Currently available deals:")
-		fmt.Println()
 		fmt.Println(color.HiCyanString(val.Info.Title))
 
 		for _, list := range val.Deals {
@@ -53,9 +50,6 @@ func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string
 		var displayList model.GetGameID = service.MakeGetRedirect(game)
 		displayList = service.MatchGetStore(displayList, storeIndex)
 
-		color.HiYellow("API Hit")
-		color.HiWhite("Currently available deals:")
-		fmt.Println()
 		fmt.Println(color.HiCyanString(displayList.Info.Title))
 
 		for _, list := range displayList.Deals {
