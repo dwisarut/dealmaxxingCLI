@@ -18,6 +18,7 @@ func InitCLI() {
 	initMessage()
 	storesMap := fetchStoreMap()
 	cachingID := cache.InitIDCache()
+	cachingGetGame := cache.InitGetCache()
 
 	for {
 		fmt.Println()
@@ -31,7 +32,7 @@ func InitCLI() {
 			showCommand()
 
 		case strings.HasPrefix(input, "get"):
-			GetHandler(reader, input, storesMap)
+			GetHandler(reader, input, storesMap, cachingGetGame)
 
 		case strings.HasPrefix(input, "id"):
 			IDHandler(reader, input, cachingID)

@@ -13,7 +13,7 @@ import (
 
 func IDHandler(reader *bufio.Reader, input string, cachingID map[string][]model.GameIdentifier) {
 	title := CommonParser(input)
-	isValid := inputValidation(title)
+	isValid := titleValidation(title)
 
 	if !isValid {
 		color.HiRed("Invalid input! Try typing a proper name again :D")
@@ -60,7 +60,7 @@ func IDHandler(reader *bufio.Reader, input string, cachingID map[string][]model.
 	}
 }
 
-func inputValidation(data string) bool {
+func titleValidation(data string) bool {
 	if strings.Contains(data, "&") || strings.Contains(data, "=") || strings.Contains(data, "'") || strings.Contains(data, `"`) {
 		return false
 	}
