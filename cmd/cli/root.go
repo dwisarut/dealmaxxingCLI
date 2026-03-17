@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/dwisarut/dealmaxxingCLI/internal/api"
+	"github.com/dwisarut/dealmaxxingCLI/internal/cache"
 	"github.com/dwisarut/dealmaxxingCLI/internal/service"
 	"github.com/fatih/color"
 )
@@ -16,6 +17,7 @@ func InitCLI() {
 
 	initMessage()
 	storesMap := fetchStoreMap()
+	cachingID := cache.InitIDCache()
 
 	for {
 		fmt.Println()
@@ -32,7 +34,7 @@ func InitCLI() {
 			GetHandler(reader, input, storesMap)
 
 		case strings.HasPrefix(input, "id"):
-			IDHandler(reader, input)
+			IDHandler(reader, input, cachingID)
 
 		case input == "exit" || input == "t":
 			fmt.Println("Exiting DealmaxxingCLI...")

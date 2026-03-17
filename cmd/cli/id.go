@@ -6,13 +6,13 @@ import (
 	"strings"
 
 	"github.com/dwisarut/dealmaxxingCLI/internal/api"
+	"github.com/dwisarut/dealmaxxingCLI/internal/cache"
 	"github.com/dwisarut/dealmaxxingCLI/internal/model"
 	"github.com/fatih/color"
 )
 
-func IDHandler(reader *bufio.Reader, input string) {
-	var title string = CommonParser(input)
-
+func IDHandler(reader *bufio.Reader, input string, cachingID map[string][]model.GameIdentifier) {
+	title := CommonParser(input)
 	isValid := inputValidation(title)
 
 	if !isValid {
@@ -24,24 +24,40 @@ func IDHandler(reader *bufio.Reader, input string) {
 	color.Green("Getting ID...")
 	fmt.Println()
 
-	var lists []model.GameIdentifier = api.GetGameIdentifier(title)
+	cacheKey := cache.MakeCachingKey(title)
 
-	if len(lists) == 0 {
-		fmt.Println(color.HiRedString("No games founded."))
-		fmt.Println("Exiting...")
+	if val, ok := cachingID[cacheKey]; ok {
+		fmt.Println(color.HiWhiteString("Identifier for"), color.HiCyanString(title))
 		fmt.Println()
-		return
+		fmt.Printf("%-81s %-10s\n", "Game title", "ID")
+
+		for _, game := range val {
+			fmt.Printf("%-90s %-10s\n", color.HiCyanString(game.Name), color.GreenString(game.GameID))
+		}
+
+		fmt.Println(strings.Repeat("_", 120))
+
+	} else {
+		lists := api.GetGameIdentifier(title)
+
+		if len(lists) == 0 {
+			fmt.Println(color.HiRedString("No games founded."))
+			fmt.Println("Exiting...")
+			fmt.Println()
+			return
+		}
+
+		fmt.Println(color.HiWhiteString("Identifier for"), color.HiCyanString(title))
+		fmt.Println()
+		fmt.Printf("%-81s %-10s\n", "Game title", "ID")
+
+		for _, list := range lists {
+			fmt.Printf("%-90s %-10s\n", color.HiCyanString(list.Name), color.GreenString(list.GameID))
+		}
+
+		fmt.Println(strings.Repeat("_", 120))
+		cache.IdentifierCaching(lists, cacheKey, cachingID)
 	}
-
-	fmt.Println(color.HiWhiteString("Identifier for"), color.HiCyanString(title))
-	fmt.Println()
-	fmt.Printf("%-81s %-10s\n", "Game title", "ID")
-
-	for _, list := range lists {
-		fmt.Printf("%-90s %-10s\n", color.HiCyanString(list.Name), color.GreenString(list.GameID))
-	}
-
-	fmt.Println(strings.Repeat("_", 120))
 }
 
 func inputValidation(data string) bool {
