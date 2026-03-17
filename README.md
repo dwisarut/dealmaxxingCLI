@@ -13,8 +13,7 @@ dealmaxxingCLI/
 |       ├── get.go                    # Get command logic
 |       ├── id.go                     # ID command logic
 |       ├── parser.go                 # Input parser logic
-|       ├── root.go                   # CLIs logics
-|       └── search.go                 # Search command logic
+|       └── root.go                   # CLIs logics
 |
 ├── internal/
 |	├── api                           # api package file
