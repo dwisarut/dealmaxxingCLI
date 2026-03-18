@@ -1,6 +1,12 @@
 # DealMaxxingCLI - Finding Discounted Game
+<img width="1228" height="720" alt="dmx_gitcover" src="https://github.com/user-attachments/assets/3236fb00-ec7e-439f-8bcf-d46b8c29d294" />
 
-An interactive CLI (Command-Line Interface) tool that handling APIs logic such as searching, and querying. The final output is the links of all available deals from multiple stores such as Steam, Gamersgate, Fanatical, etc.
+An interactive CLI (Command-Line Interface) tool that handling APIs logic such as searching, and querying. The final output is the links of all available deals from multiple stores such as Steam, Gamersgate, Fanatical, etc. Implemented the basic caching to record search history, hashmap to search for stores data, and user input sanitization to prevent unforseen error and search results.
+
+## Features
+- help: Display the available commands.
+- id: Find the searched title identifier.
+- get: Use the unique ID to find all of the available deals in different stores.
 
 ## Getting started
 
