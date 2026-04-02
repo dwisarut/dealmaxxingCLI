@@ -9,6 +9,7 @@ import (
 	"github.com/dwisarut/dealmaxxingCLI/internal/cache"
 	"github.com/dwisarut/dealmaxxingCLI/internal/model"
 	"github.com/fatih/color"
+	"github.com/rodaine/table"
 )
 
 func IDHandler(reader *bufio.Reader, input string, cachingID map[string][]model.GameIdentifier) {
@@ -26,16 +27,20 @@ func IDHandler(reader *bufio.Reader, input string, cachingID map[string][]model.
 
 	cacheKey := cache.MakeCachingKey(title)
 
+	headerFmt := color.New(color.FgHiWhite, color.Underline).SprintfFunc()
+	columnFmt := color.New(color.FgHiCyan).SprintfFunc()
+
+	tbl := table.New("Game title", "ID")
+	tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt)
+
 	if val, ok := cachingID[cacheKey]; ok {
-		fmt.Println(color.HiWhiteString("Identifier for"), color.HiCyanString(title))
-		fmt.Println()
-		fmt.Printf("%-81s %-10s\n", "Game title", "ID")
 
 		for _, game := range val {
-			fmt.Printf("%-90s %-10s\n", color.HiCyanString(game.Name), color.GreenString(game.GameID))
+			tbl.AddRow(game.Name, game.GameID)
 		}
 
-		fmt.Println(strings.Repeat("_", 120))
+		tbl.Print()
+		fmt.Println(strings.Repeat("-", 10))
 
 	} else {
 		lists := api.GetGameIdentifier(title)
@@ -49,13 +54,13 @@ func IDHandler(reader *bufio.Reader, input string, cachingID map[string][]model.
 
 		fmt.Println(color.HiWhiteString("Identifier for"), color.HiCyanString(title))
 		fmt.Println()
-		fmt.Printf("%-81s %-10s\n", "Game title", "ID")
 
 		for _, list := range lists {
-			fmt.Printf("%-90s %-10s\n", color.HiCyanString(list.Name), color.GreenString(list.GameID))
+			tbl.AddRow(list.Name, list.GameID)
 		}
 
-		fmt.Println(strings.Repeat("_", 120))
+		tbl.Print()
+		fmt.Println(strings.Repeat("-", 10))
 		cache.IdentifierCaching(lists, cacheKey, cachingID)
 	}
 }
