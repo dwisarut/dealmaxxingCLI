@@ -10,6 +10,7 @@ import (
 	"github.com/dwisarut/dealmaxxingCLI/internal/model"
 	"github.com/dwisarut/dealmaxxingCLI/internal/service"
 	"github.com/fatih/color"
+	"github.com/rodaine/table"
 )
 
 func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string, cachingGet map[string]model.GetGameID) {
@@ -27,15 +28,22 @@ func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string
 
 	cacheKey := cache.MakeCachingKey(id)
 
+	headerFmt := color.New(color.FgHiWhite, color.Underline).SprintfFunc()
+	columnFmt := color.New(color.FgHiBlue).SprintfFunc()
+
+	tbl := table.New("Store", "Price ($)", "Link")
+	tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt)
+
 	if val, ok := cachingGet[cacheKey]; ok {
 		fmt.Println(color.HiCyanString(val.Info.Title))
+		fmt.Println()
 
 		for _, list := range val.Deals {
-			fmt.Println(color.HiBlueString("Store:"), color.HiBlueString(list.StoreName))
-			fmt.Println(color.HiYellowString("Prices:"), color.YellowString(list.Price), color.YellowString("$"))
-			fmt.Println(color.HiWhiteString("Link:"), color.GreenString(list.Redirect))
-			fmt.Println()
+			tbl.AddRow(list.StoreName, list.Price, list.Redirect)
 		}
+
+		tbl.Print()
+		fmt.Println(strings.Repeat("-", 10))
 
 	} else {
 		var game model.GetGameID = api.GetGameFromId(id)
@@ -51,15 +59,15 @@ func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string
 		displayList = service.MatchGetStore(displayList, storeIndex)
 
 		fmt.Println(color.HiCyanString(displayList.Info.Title))
+		fmt.Println()
 
 		for _, list := range displayList.Deals {
-			fmt.Println(color.HiBlueString("Store:"), color.HiBlueString(list.StoreName))
-			fmt.Println(color.HiYellowString("Prices:"), color.YellowString(list.Price), color.YellowString("$"))
-			fmt.Println(color.HiWhiteString("Link:"), color.GreenString(list.Redirect))
-			fmt.Println()
+			tbl.AddRow(list.StoreName, list.Price, list.Redirect)
 		}
 
-		fmt.Println(strings.Repeat("_", 120))
+		tbl.Print()
+		fmt.Println(strings.Repeat("-", 10))
+
 		cache.GetCaching(displayList, cacheKey, cachingGet)
 	}
 }
