@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"os"
+	"time"
 
 	"github.com/cloudflare/cloudflare-go/v6"
 	"github.com/cloudflare/cloudflare-go/v6/kv"
@@ -41,8 +42,11 @@ func NewService(env model.Config) *cloudflare.Client {
 
 func GetKV(config model.Config, client *cloudflare.Client) model.ProcessedKV {
 
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
 	page, err := client.KV.Namespaces.Keys.List(
-		context.TODO(),
+		ctx,
 		config.NamespaceID,
 		kv.NamespaceKeyListParams{
 			AccountID: cloudflare.F(config.AccountID),
