@@ -22,13 +22,6 @@ func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string
 		return
 	}
 
-	config := api.ReadEnv()
-	client := api.NewService(config)
-
-	kvData := api.GetKV(config, client)
-	kvCount := kvData.Count
-	fmt.Println("Current KV count: ", kvCount)
-
 	fmt.Println()
 	color.Green("Getting...")
 	fmt.Println()
@@ -64,9 +57,6 @@ func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string
 
 		var displayList model.GetGameID = service.MakeGetRedirect(game)
 
-		// TODO: MAKE URL SHORTENER HERE
-		// Function that take kvCount and encode the URL
-
 		displayList = service.MatchGetStore(displayList, storeIndex)
 
 		fmt.Println(color.HiCyanString(displayList.Info.Title))
@@ -79,7 +69,6 @@ func GetHandler(reader *bufio.Reader, input string, storeIndex map[string]string
 		tbl.Print()
 		fmt.Println(strings.Repeat("-", 10))
 
-		// Cache the shortened URL around here!
 		cache.GetCaching(displayList, cacheKey, cachingGet)
 	}
 }

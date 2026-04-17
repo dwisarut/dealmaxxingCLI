@@ -26,31 +26,15 @@ type InfoAPI struct {
 }
 
 type DealAPI struct {
-	StoreID         string `json:"storeID"`
-	DealID          string `json:"dealID"`
-	Price           string `json:"price"`
-	Savings         string `json:"savings"`
-	StoreName       string
-	Redirect        string
-	DisplayRedirect string
+	StoreID   string `json:"storeID"`
+	DealID    string `json:"dealID"`
+	Price     string `json:"price"`
+	Savings   string `json:"savings"`
+	StoreName string
+	Redirect  string
 }
 
 type GameIdentifier struct {
 	Name   string `json:"external"`
 	GameID string `json:"gameID"`
-}
-
-type Config struct {
-	APIToken    string
-	NamespaceID string
-	AccountID   string
-}
-
-type ProcessedKV struct {
-	Result []Keys `json:"result"`
-	Count  int
-}
-
-type Keys struct {
-	Name string `json:"name"`
 }
